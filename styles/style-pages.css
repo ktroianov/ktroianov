@@ -397,19 +397,3 @@ img {
   -moz-user-select: none; /* Для Firefox */
   -ms-user-select: none; /* Для старых версий IE */
 }
-
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  right: -300px; /* Скрываем за пределами экрана */
-  width: 300px;
-  height: 100vh;
-  background-color: rgba(204, 204, 204, 0.25);
-  backdrop-filter: blur(10px);
-  transition: right 1s ease-in-out;
-  z-index: 10000;
-}
-
-.menu-overlay.active {
-  right: 0; /* Показываем меню */
-}
