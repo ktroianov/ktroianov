@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konstantin Troianov | About</title>
+    <link rel="stylesheet" href="styles/style-pages.css" />
+    <link rel="fonts" href="fonts/" />
+  </head>
+
+  <body>
+    <div class="header">
+      <div class="logo">
+        <a href="index.html">
+          <img src="icons/logo-dark.svg" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="navbar">
+        <a href="work.html" class="button-disabled">Work</a>
+        <a href="services.html" class="button-disabled">Services</a>
+        <a href="about.html" class="button-active">About</a>
+      </div>
+
+      <div class="menu">
+        <img src="icons/menu.svg" alt="menu" />
+      </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="content">
+      <div id="projectContent"></div>
+      <!-- Сюда будет вставляться контент -->
+    </div>
+
+    <!-- Футер -->
+    <div class="footer">
+      <div class="linkedin">
+        <a href="https://www.linkedin.com/in/ktroianov" target="_blank">
+          <img src="icons/linkedin.svg" alt="Konstantin at LinkedIn" />
+        </a>
+      </div>
+
+      <div class="email">
+        <a href="mailto:ktroianov@gmail.com">
+          <img src="icons/email.svg" alt="Email to Konstantin" />
+        </a>
+      </div>
+
+      <div class="behance">
+        <a href="https://www.behance.net/ktroianov" target="_blank">
+          <img src="icons/behance.svg" alt="Konstantin at Behance" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Стрелка "наверх" -->
+    <div class="scroll-to-top hidden" id="scrollToTop">
+      <img src="icons/arrow-up.svg" alt="Scroll to top" class="arrow-up" />
+    </div>
+
+    <!-- Подключение JS -->
+    <script src="scripts/script.js"></script>
+
+    <script>
+      // Загрузка данных из JSON
+      fetch("about/about.json")
+        .then((response) => response.json())
+        .then((data) => {
+          const contentContainer = document.getElementById("projectContent");
+
+          // Добавляем заголовок
+          const title = document.createElement("h1");
+          title.textContent = data.title;
+          title.classList.add("project-title");
+          contentContainer.appendChild(title);
+
+          // Добавляем подзаголовок
+          const subtitle = document.createElement("p");
+          subtitle.textContent = data.subtitle;
+          subtitle.classList.add("project-subtitle");
+          contentContainer.appendChild(subtitle);
+
+          // Добавляем контент (изображения и текст)
+          data.content.forEach((item) => {
+            if (item.type === "text") {
+              const textBlock = document.createElement("div");
+              textBlock.classList.add("text-block");
+              textBlock.innerHTML = item.value; // Поддержка HTML в тексте
+              contentContainer.appendChild(textBlock);
+            } else if (item.type === "image") {
+              const imageBlock = document.createElement("div");
+              imageBlock.classList.add("image-block");
+              const img = document.createElement("img");
+              img.src = item.src;
+              img.alt = data.title;
+              imageBlock.appendChild(img);
+              contentContainer.appendChild(imageBlock);
+            }
+          });
+        })
+        .catch((error) => console.error("Ошибка загрузки данных:", error));
+    </script>
+
+    <!-- Всплывающее меню -->
+    <div class="menu-overlay">
+      <div class="close-icon">
+        <img src="icons/close.svg" alt="Close" />
+      </div>
+      <a href="blog.html" class="blog-link">BLOG</a>
+      <div class="blog-posts"></div>
+      <!-- Посты загружаются сюда -->
+    </div>
+  </body>
+</html>

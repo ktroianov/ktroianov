@@ -1,0 +1,20 @@
+{
+  "content": [
+    {
+      "type": "image",
+      "src": "about/about-1.png"
+    },
+    {
+      "type": "text",
+      "value": "<strong>Hello!</strong><br><br>My name is Konstantin. I am a motivated Industrial Designer and Design Consultant helping businesses grow by leveraging the business value of design. With over 10 years of experience and multidisciplinary skillset, I focus on a strategic and holistic design approach, integrating physical, digital, and service design to build cohesive brand languages.<br><br>With a fine arts background and an Associate degree in Design and Fine Arts, I have a deep passion for aesthetics and meticulous attention to detail.<br><br>Holding a Master’s degree in Industrial Design, I follow a comprehensive design process that spans market and user research, ideation, prototyping, usability testing, advanced CAD modeling, and design for manufacturing.<br><br>I implement User-Centered approach and Design Thinking techniques creating functional, reliable, easy to use and aesthetically pleasing products. And the paramount focus of my Design Process is to find and solve people’s problems, enhance their User Experience and bring them a feeling of delight from using a product keeping in mind the company’s business needs.<br><br>Sincerely,<br>Konstantin Troianov"
+    },
+    {
+      "type": "text",
+      "value": "<br><br><br><br><strong>Education & Experience</strong><br><br><br>"
+    },
+    {
+      "type": "image",
+      "src": "about/about-2.svg"
+    }
+  ]
+}

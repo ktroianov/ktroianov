@@ -1,0 +1,415 @@
+/* Общие стили */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e6e6e6;
+}
+
+/* Подключение шрифтов */
+@font-face {
+  font-family: "HelveticaNeueCyr Bold";
+  src: url("../fonts/HelveticaNeueCyr-Bold.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "HelveticaNeueCyr Light";
+  src: url("../fonts/HelveticaNeueCyr-Light.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.header {
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e6e6e6;
+  z-index: 1000;
+}
+
+.logo {
+  display: flex;
+  margin: 30px;
+  padding: 0;
+  height: 30px;
+  cursor: pointer;
+}
+
+.logo img {
+  transition: transform 0.75s ease;
+}
+
+.logo img:hover {
+  transform: scale(1.1);
+}
+
+.navbar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.button-active,
+.button-disabled {
+  margin: 0px 20px;
+  text-align: center;
+  font-family: "Century Gothic", sans-serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.75s ease;
+  text-decoration: none;
+}
+
+.button-active {
+  font-weight: bold;
+  color: #333333;
+}
+
+.button-disabled {
+  color: #333333;
+  opacity: 0.5;
+}
+
+.button-active:hover,
+.button-disabled:hover {
+  transform: scale(1.25);
+}
+
+/* Стили для меню */
+.menu img {
+  filter: invert(18%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%)
+    contrast(81%);
+  height: 14px;
+  margin-right: 30px;
+  cursor: pointer;
+  transition: transform 0.75s ease;
+}
+
+.menu img:hover {
+  transform: scale(1.25);
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e6e6e6;
+  z-index: 1000;
+}
+
+.footer a {
+  margin: 0 8px;
+}
+
+.footer img {
+  width: 20px;
+  filter: invert(40%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(91%)
+    contrast(83%);
+  opacity: 0.25;
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+.footer img:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Основной контент с отступами для хедера и футера */
+.content {
+  padding-top: 140px;
+  padding-bottom: 110px;
+}
+
+/* Стили для плиток */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+  max-width: 1500px; /* Ограничиваем максимальную ширину */
+}
+
+.grid-item {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.grid-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 1s ease-in-out, filter 1s ease-in-out; /* Добавлен transition для filter */
+}
+
+/* Основное изображение (project-X-cut) */
+.grid-item img.cut {
+  opacity: 1; /* По умолчанию видимо */
+  z-index: 1; /* Находится поверх */
+}
+
+/* Изображение при наведении (project-X) */
+.grid-item img.full {
+  opacity: 0; /* По умолчанию скрыто */
+  z-index: 2; /* Находится под cut, но будет проявляться поверх */
+}
+
+/* При наведении меняем прозрачность */
+.grid-item:hover img.cut {
+  opacity: 0; /* Основное изображение скрывается */
+}
+
+.grid-item:hover img.full {
+  opacity: 1; /* Изображение при наведении проявляется */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 3; /* Текст должен быть поверх изображений */
+}
+
+.grid-item h2 {
+  font-family: "HelveticaNeueCyr Bold", sans-serif;
+  font-size: 24px;
+  color: #333333;
+  margin: 0;
+  margin-top: 30px;
+}
+
+.grid-item p {
+  font-family: "HelveticaNeueCyr Light", sans-serif;
+  font-size: 14px;
+  color: #333333;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+.grid-item:hover .overlay {
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Полоска прокрутки */
+.scroll-indicator {
+  position: fixed;
+  top: 85px;
+  left: 0;
+  height: 5px;
+  background-color: #b3b3b3;
+  z-index: 1000;
+  transition: width 0s ease-in-out;
+}
+
+/* Адаптивность */
+/* Для экранов шире 1025px */
+@media (min-width: 1025px) {
+  .grid-container {
+    grid-template-columns: repeat(3, minmax(200px, 450px)); /* 3 колонки */
+  }
+}
+
+/* Для экранов от 768px до 1024px */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .grid-container {
+    grid-template-columns: repeat(2, minmax(200px, 600px)); /* 2 колонки */
+  }
+}
+
+/* Для экранов уже 768px */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(1, minmax(200px, 600px)); /* 1 колонка */
+  }
+}
+
+/* Стрелка "наверх" */
+.scroll-to-top {
+  position: fixed;
+  bottom: 60px;
+  right: 30px;
+  width: 30px;
+  height: 15px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  z-index: 1001;
+}
+
+.scroll-to-top:hover {
+  opacity: 1;
+  transform: scale(1.25);
+}
+
+.scroll-to-top.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-to-top img {
+  width: 100%;
+  height: 100%;
+  filter: invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%)
+    contrast(83%);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    display: flex; /* Показываем кнопки */
+    position: static; /* Убираем абсолютное позиционирование */
+    transform: none; /* Убираем трансформацию */
+    margin: 0 auto; /* Центрируем блок */
+    flex-grow: 1; /* Растягиваем блок между logo и menu */
+    justify-content: center; /* Центрируем кнопки внутри блока */
+  }
+
+  .menu {
+    margin-right: 20px;
+  }
+}
+
+/* Стили для страницы проекта */
+/* Ограничение ширины текста и выравнивание по левому краю изображения */
+.content {
+  padding: 140px 90px 110px;
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрируем контент по горизонтали */
+}
+
+h1,
+#projectSubtitle,
+.description {
+  width: 100%;
+  max-width: 900px; /* Ограничиваем ширину текста шириной изображения */
+  text-align: left; /* Выравниваем текст по левому краю */
+}
+
+/* Стили для заголовка */
+h1 {
+  font-family: "HelveticaNeueCyr Bold", sans-serif;
+  font-size: 36px;
+  color: #333333;
+  margin-bottom: 5px;
+  max-width: 900px; /* Ограничиваем ширину текста шириной изображения */
+  text-align: left; /* Выравниваем текст по левому краю */
+}
+
+/* Стили для подзаголовка */
+.project-subtitle {
+  font-family: "HelveticaNeueCyr Bold", sans-serif; /* Шрифт */
+  font-size: 20px; /* Размер шрифта */
+  color: #333333; /* Цвет текста */
+  opacity: 0.3; /* Прозрачность */
+  margin-bottom: 30px; /* Отступ снизу */
+  max-width: 900px; /* Ограничиваем ширину текста шириной изображения */
+  text-align: left; /* Выравниваем текст по левому краю */
+}
+
+/* Стили для текста */
+.text-block {
+  font-family: "HelveticaNeueCyr Light", sans-serif;
+  font-size: 14px;
+  line-height: 150%;
+  color: #000000;
+  margin-bottom: 30px;
+  max-width: 900px; /* Ограничиваем ширину текста шириной изображения */
+  text-align: left; /* Выравниваем текст по левому краю */
+}
+
+.text-block strong {
+  font-family: "HelveticaNeueCyr Bold", sans-serif;
+  font-size: 20px;
+}
+
+/* Стили для изображений */
+.image-block {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.image-block img {
+  width: 100%;
+  max-width: 900px;
+  object-fit: cover;
+}
+
+.video-block {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.video-block video {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+}
+
+video {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  margin-bottom: 30px; /* Чтобы отступы были как у изображений */
+  pointer-events: auto; /* Разрешить взаимодействие с видео */
+}
+
+/* Защита изображений от скачивания */
+img {
+  user-select: none; /* Запрет выделения */
+  -webkit-user-select: none; /* Для Safari */
+  -moz-user-select: none; /* Для Firefox */
+  -ms-user-select: none; /* Для старых версий IE */
+}
+
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  right: -300px; /* Скрываем за пределами экрана */
+  width: 300px;
+  height: 100vh;
+  background-color: rgba(204, 204, 204, 0.25);
+  backdrop-filter: blur(10px);
+  transition: right 1s ease-in-out;
+  z-index: 10000;
+}
+
+.menu-overlay.active {
+  right: 0; /* Показываем меню */
+}
